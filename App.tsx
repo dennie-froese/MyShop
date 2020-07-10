@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
-import Item from 'components/Item';
+import Item, {Product} from 'components/Item';
 
 export default function App() {
   const [products, setProducts] = useState();
@@ -19,7 +19,7 @@ export default function App() {
     <>
       <ScrollView style={styles.container}>
         {products
-          ? products.map((product: any) => {
+          ? products.map((product: Product) => {
               return <Item product={product} />;
             })
           : null}

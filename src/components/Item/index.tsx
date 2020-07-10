@@ -1,21 +1,32 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 
-export default function Item() {
+export type Product = {
+  id: number;
+  colour: string;
+  name: string;
+  price: number;
+  img: string;
+};
+interface Props {
+  product: Product;
+}
+
+export default function Item({product}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Text>Image</Text>
+        <Image style={styles.image} source={{uri: product.img}} />
       </View>
       <View style={styles.containerRight}>
         <View style={styles.header}>
-          <Text>Item name</Text>
+          <Text>{product.name}</Text>
         </View>
         <View style={styles.details}>
-          <Text>£ price</Text>
+          <Text>{product.price}£</Text>
           <View style={styles.containerQuantity}>
             <Text>+</Text>
-            <Text>QTY</Text>
+            <Text>0</Text>
             <Text>-</Text>
           </View>
         </View>
@@ -34,6 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
+  },
+  image: {
+    width: 65,
+    height: 65,
   },
   containerRight: {
     flex: 1,
