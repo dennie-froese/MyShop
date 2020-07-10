@@ -1,17 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import Item from 'components/Item';
 
 export default function App() {
-  // https://my-json-server.typicode.com/benirvingplt/products/products
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    fetch('https://my-json-server.typicode.com/benirvingplt/products/products')
+      .then((res) => res.json())
+      .then((result) => {
+        setProducts(result);
+      });
+  }, []);
+
+  console.warn(products);
 
   return (
     <>
       <ScrollView style={styles.container}>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        {products
+          ? products.map((product: any) => {
+              return <Item product={product} />;
+            })
+          : null}
       </ScrollView>
     </>
   );
