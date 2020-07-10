@@ -1,15 +1,25 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
+import Item from 'components/Item';
 
 export default function App() {
-  return <></>;
+  // https://my-json-server.typicode.com/benirvingplt/products/products
+
+  return (
+    <>
+      <ScrollView style={styles.container}>
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+      </ScrollView>
+    </>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 100,
+  },
+});
