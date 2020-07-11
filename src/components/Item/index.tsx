@@ -11,27 +11,39 @@ export type Product = {
 interface Props {
   product: Product;
   increment: (n: number, c: string) => void;
+  remove: (id: number) => void;
 }
 
-export default function Item({product, increment}: Props) {
+export default function Item({product, increment, remove}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{uri: product.img}} />
       </View>
       <View style={styles.containerRight}>
-        <View style={styles.header}>
+        <View>
           <Text>{product.name}</Text>
         </View>
         <View style={styles.details}>
-          <Text>{product.price}£</Text>
-          <View style={styles.containerQuantity}>
-            <TouchableOpacity onPress={()=> increment(product.price, 'plus')} style={styles.increment}>
-              <Text style={styles.text}>+</Text>
-            </TouchableOpacity>
-            <Text style={styles.text}>0</Text>
-            <TouchableOpacity onPress={()=> increment(product.price, 'minus')} style={styles.increment}>
-              <Text style={styles.text}>-</Text>
+          <View style={styles.priceContainter}>
+            <Text>{product.price} £</Text>
+          </View>
+          <View style={styles.containerRightRight}>
+            <View style={styles.containerQuantity}>
+              <TouchableOpacity
+                onPress={() => increment(product.price, 'plus')}
+                style={styles.increment}>
+                <Text style={styles.text}>+</Text>
+              </TouchableOpacity>
+              <Text style={styles.text}>0</Text>
+              <TouchableOpacity
+                onPress={() => increment(product.price, 'minus')}
+                style={styles.increment}>
+                <Text style={styles.text}>-</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity onPress={() => remove(product.id)}>
+              <Text style={styles.text}>Remove</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -58,17 +70,21 @@ const styles = StyleSheet.create({
   containerRight: {
     flex: 1,
   },
-  header: {
-    alignItems: 'flex-start',
+  priceContainter: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 20,
+  },
+  containerRightRight: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   details: {
-    // flex: 1,
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 30,
   },
   containerQuantity: {
-    // flex: 1,
     flexDirection: 'row',
     alignContent: 'space-between',
   },
@@ -77,6 +93,5 @@ const styles = StyleSheet.create({
   },
   increment: {
     width: 30,
-    height: 30,
   },
 });

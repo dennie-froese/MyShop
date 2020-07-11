@@ -22,17 +22,22 @@ export default function App() {
   }, []);
 
   const filter = () => {
-    let filteredProducts: Product[] = products.filter((product: Product) => {
+    const filteredProducts: Product[] = products.filter((product: Product) => {
       return product.colour.toLowerCase().match('black');
     });
     setProducts(filteredProducts);
     setOpen(false);
   };
 
-  function increment(n: number, c: string){
-    c === 'plus' ? 
-    setTotal(total + n) :
-    setTotal(total - n)
+  function increment(n: number, c: string) {
+    c === 'plus' ? setTotal(total + n) : setTotal(total - n);
+  }
+
+  function remove(id: number) {
+    const tempProductsReduced = products.filter(function (product: Product) {
+      return product.id != id;
+    });
+    setProducts(tempProductsReduced);
   }
 
   return (
@@ -52,9 +57,6 @@ export default function App() {
                 <TouchableOpacity onPress={filter}>
                   <Text>BLACK</Text>
                 </TouchableOpacity>
-
-                <Text>RED</Text>
-                <Text>STONE</Text>
               </View>
             ) : null}
           </View>
@@ -62,7 +64,12 @@ export default function App() {
             {products
               ? products.map((product: Product) => {
                   return (
-                    <Item product={product ? product : null} key={product.id} increment={increment} />
+                    <Item
+                      product={product ? product : null}
+                      key={product.id}
+                      increment={increment}
+                      remove={remove}
+                    />
                   );
                 })
               : null}
