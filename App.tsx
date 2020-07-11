@@ -11,6 +11,7 @@ import Item, {Product} from 'components/Item';
 export default function App() {
   const [products, setProducts] = useState();
   const [open, setOpen] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     fetch('https://my-json-server.typicode.com/benirvingplt/products/products')
@@ -30,30 +31,41 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.filterContainer}>
-        <TouchableOpacity style={styles.filter} onPress={() => setOpen(!open)}>
-          <Text style={styles.text}>Colour filter</Text>
-        </TouchableOpacity>
-        {open ? (
-          <View>
-            <TouchableOpacity onPress={filter}>
-              <Text>BLACK</Text>
+      {!products ? (
+        <Text>Oops - something went wrong!</Text>
+      ) : (
+        <View>
+          <View style={styles.filterContainer}>
+            <TouchableOpacity
+              style={styles.filter}
+              onPress={() => setOpen(!open)}>
+              <Text style={styles.text}>Colour filter</Text>
             </TouchableOpacity>
+            {open ? (
+              <View>
+                <TouchableOpacity onPress={filter}>
+                  <Text>BLACK</Text>
+                </TouchableOpacity>
 
-            <Text>RED</Text>
-            <Text>STONE</Text>
+                <Text>RED</Text>
+                <Text>STONE</Text>
+              </View>
+            ) : null}
           </View>
-        ) : null}
-      </View>
-      <ScrollView>
-        {products
-          ? products.map((product: Product) => {
-              return (
-                <Item product={product ? product : null} key={product.id} />
-              );
-            })
-          : null}
-      </ScrollView>
+          <ScrollView>
+            {products
+              ? products.map((product: Product) => {
+                  return (
+                    <Item product={product ? product : null} key={product.id} />
+                  );
+                })
+              : null}
+          </ScrollView>
+          <View style={styles.total}>
+            <Text style={styles.text}>Total: {total}£</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -73,5 +85,12 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
+  },
+  total: {
+    flex: 4,
+    alignItems: 'flex-end',
+    // justifyContent: 'flex-end',
+    // width: 100,
+    borderTopWidth: 2,
   },
 });
