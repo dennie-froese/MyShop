@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 
 export type Product = {
   id: number;
@@ -10,9 +10,10 @@ export type Product = {
 };
 interface Props {
   product: Product;
+  increment: (n: number, c: string) => void;
 }
 
-export default function Item({product}: Props) {
+export default function Item({product, increment}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -25,9 +26,13 @@ export default function Item({product}: Props) {
         <View style={styles.details}>
           <Text>{product.price}£</Text>
           <View style={styles.containerQuantity}>
-            <Text>+</Text>
-            <Text>0</Text>
-            <Text>-</Text>
+            <TouchableOpacity onPress={()=> increment(product.price, 'plus')} style={styles.increment}>
+              <Text style={styles.text}>+</Text>
+            </TouchableOpacity>
+            <Text style={styles.text}>0</Text>
+            <TouchableOpacity onPress={()=> increment(product.price, 'minus')} style={styles.increment}>
+              <Text style={styles.text}>-</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -57,12 +62,21 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   details: {
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 30,
   },
   containerQuantity: {
+    // flex: 1,
     flexDirection: 'row',
+    alignContent: 'space-between',
+  },
+  text: {
+    textAlign: 'center',
+  },
+  increment: {
+    width: 30,
+    height: 30,
   },
 });

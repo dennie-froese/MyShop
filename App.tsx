@@ -29,12 +29,18 @@ export default function App() {
     setOpen(false);
   };
 
+  function increment(n: number, c: string){
+    c === 'plus' ? 
+    setTotal(total + n) :
+    setTotal(total - n)
+  }
+
   return (
-    <View style={styles.container}>
+    <>
       {!products ? (
         <Text>Oops - something went wrong!</Text>
       ) : (
-        <View>
+        <View style={styles.container}>
           <View style={styles.filterContainer}>
             <TouchableOpacity
               style={styles.filter}
@@ -56,17 +62,19 @@ export default function App() {
             {products
               ? products.map((product: Product) => {
                   return (
-                    <Item product={product ? product : null} key={product.id} />
+                    <Item product={product ? product : null} key={product.id} increment={increment} />
                   );
                 })
               : null}
           </ScrollView>
           <View style={styles.total}>
-            <Text style={styles.text}>Total: {total}£</Text>
+            <View style={styles.totalView}>
+              <Text style={styles.text}>Total: {total.toFixed(2)}£</Text>
+            </View>
           </View>
         </View>
       )}
-    </View>
+    </>
   );
 }
 
@@ -89,8 +97,11 @@ const styles = StyleSheet.create({
   total: {
     flex: 4,
     alignItems: 'flex-end',
-    // justifyContent: 'flex-end',
-    // width: 100,
+    marginRight: 30,
+  },
+  totalView: {
     borderTopWidth: 2,
+
+    borderColor: 'black',
   },
 });
