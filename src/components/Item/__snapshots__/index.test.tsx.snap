@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item renders 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+      "padding": 30,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "padding": 10,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "string",
+        }
+      }
+      style={
+        Object {
+          "height": 65,
+          "width": 65,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <Text>
+        Top
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "center",
+            "paddingLeft": 20,
+          }
+        }
+      >
+        <Text>
+          7
+           £
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignContent": "space-between",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+                "width": 30,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
+              +
+            </Text>
+          </View>
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            0
+          </Text>
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+                "width": 30,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "textAlign": "center",
+                }
+              }
+            >
+              -
+            </Text>
+          </View>
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "textAlign": "center",
+              }
+            }
+          >
+            Remove
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
