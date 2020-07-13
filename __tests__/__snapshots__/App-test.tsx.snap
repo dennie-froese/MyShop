@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App loads products from API and matches snapshot 1`] = `
+<Text>
+  Oops - something went wrong!
+</Text>
+`;
