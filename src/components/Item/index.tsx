@@ -10,11 +10,12 @@ export type Product = {
 };
 interface Props {
   product: Product;
-  increment: (n: number, c: string) => void;
+  increment: (n: number) => void;
+  decrement: (n: number) => void;
   remove: (id: number) => void;
 }
 
-export default function Item({product, increment, remove}: Props) {
+export default function Item({product, increment, decrement, remove}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -31,13 +32,13 @@ export default function Item({product, increment, remove}: Props) {
           <View style={styles.containerRightRight}>
             <View style={styles.containerQuantity}>
               <TouchableOpacity
-                onPress={() => increment(product.price, 'plus')}
+                onPress={() => increment(product.price)}
                 style={styles.increment}>
                 <Text style={styles.text}>+</Text>
               </TouchableOpacity>
               <Text style={styles.text}>0</Text>
               <TouchableOpacity
-                onPress={() => increment(product.price, 'minus')}
+                onPress={() => decrement(product.price)}
                 style={styles.increment}>
                 <Text style={styles.text}>-</Text>
               </TouchableOpacity>

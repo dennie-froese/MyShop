@@ -29,8 +29,12 @@ export default function App() {
     setOpen(false);
   };
 
-  function increment(n: number, c: string) {
-    c === 'plus' ? setTotal(total + n) : setTotal(total - n);
+  function increment(n: number) {
+    setTotal(total + n);
+  }
+
+  function decrement(n: number) {
+    setTotal(total - n);
   }
 
   function remove(id: number) {
@@ -68,6 +72,7 @@ export default function App() {
                       product={product ? product : null}
                       key={product.id}
                       increment={increment}
+                      decrement={decrement}
                       remove={remove}
                     />
                   );
