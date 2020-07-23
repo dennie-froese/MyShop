@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {useIncDec} from 'hooks/useTotalContext';
 
 export type Product = {
   id: number;
@@ -10,12 +11,12 @@ export type Product = {
 };
 interface Props {
   product: Product;
-  increment: (n: number) => void;
-  decrement: (n: number) => void;
   remove: (id: number) => void;
 }
 
-export default function Item({product, increment, decrement, remove}: Props) {
+export default function Item({product, remove}: Props) {
+  const [itemCount, setItemCount] = useState(0);
+  const {inc, dec} = useIncDec(product.price);
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -32,13 +33,17 @@ export default function Item({product, increment, decrement, remove}: Props) {
           <View style={styles.containerRightRight}>
             <View style={styles.containerQuantity}>
               <TouchableOpacity
-                onPress={() => increment(product.price)}
+                onPress={() => {
+                  inc(), setItemCount((prev) => prev + 1);
+                }}
                 style={styles.increment}>
                 <Text style={styles.text}>+</Text>
               </TouchableOpacity>
-              <Text style={styles.text}>0</Text>
+              <Text style={styles.text}>{itemCount}</Text>
               <TouchableOpacity
-                onPress={() => decrement(product.price)}
+                onPress={() => {
+                  dec(), setItemCount((prev) => prev - 1);
+                }}
                 style={styles.increment}>
                 <Text style={styles.text}>-</Text>
               </TouchableOpacity>
