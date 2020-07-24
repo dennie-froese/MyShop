@@ -28,7 +28,7 @@ export default function Item({product, remove}: Props) {
         </View>
         <View style={styles.details}>
           <View style={styles.priceContainter}>
-            <Text>{product.price} £</Text>
+            <Text>£{product.price}</Text>
           </View>
           <View style={styles.containerRightRight}>
             <View style={styles.containerQuantity}>
