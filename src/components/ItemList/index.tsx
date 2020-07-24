@@ -5,15 +5,20 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import Item, {Product} from 'components/Item';
-import {useTotal} from 'hooks/useTotalContext';
+import {useTotal, useDiscountApply} from 'hooks/useTotalContext';
 import useFetch from 'hooks/useFetch';
 
 export default function App() {
   const [products, setProducts] = useState();
-  const [open, setOpen] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
+  const [openDiscount, setOpenDiscount] = useState(false);
+  const [discount, setDiscount] = useState('');
+  const [discountApplied, setDiscountApplied] = useState('');
   const total = useTotal();
+  const discountApply = useDiscountApply(20);
   const results = useFetch(
     'https://my-json-server.typicode.com/benirvingplt/products/products',
   );
@@ -27,7 +32,7 @@ export default function App() {
       return product.colour.toLowerCase().match('black');
     });
     setProducts(filteredProducts);
-    setOpen(false);
+    setOpenFilter(false);
   };
 
   function remove(id: number) {
