@@ -62,10 +62,10 @@ export default function App() {
           <View style={styles.filterContainer}>
             <TouchableOpacity
               style={styles.filter}
-              onPress={() => setOpen(!open)}>
+              onPress={() => setOpenFilter(!openFilter)}>
               <Text style={styles.text}>Colour filter</Text>
             </TouchableOpacity>
-            {open ? (
+            {openFilter ? (
               <View>
                 <TouchableOpacity onPress={filter}>
                   <Text>BLACK</Text>
@@ -85,12 +85,35 @@ export default function App() {
                   );
                 })
               : null}
-          </ScrollView>
-          <View style={styles.total}>
-            <View style={styles.totalView}>
-              <Text style={styles.text}>Total: £ {total.toFixed(2)}</Text>
+            <View style={styles.total}>
+              <View style={styles.totalView}>
+                <Text style={styles.text}>Total: £{total.toFixed(2)}</Text>
+              </View>
+              <TouchableOpacity
+                style={styles.discountToggle}
+                onPress={() => setOpenDiscount(!openDiscount)}>
+                <Text style={styles.text}>Got a discount code?</Text>
+              </TouchableOpacity>
+              {openDiscount ? (
+                <View style={styles.discount}>
+                  <TextInput
+                    style={styles.discountInput}
+                    onChangeText={(text) => setDiscount(text)}
+                    value={discount}
+                    placeholder={'Enter your discount here :)'}
+                  />
+                  <TouchableOpacity onPress={discountChecker}>
+                    <Text>Apply discount</Text>
+                  </TouchableOpacity>
+                  {discountApplied === '' ? null : (
+                    <View>
+                      <Text>{discountApplied}</Text>
+                    </View>
+                  )}
+                </View>
+              ) : null}
             </View>
-          </View>
+          </ScrollView>
         </View>
       )}
     </>
@@ -109,6 +132,25 @@ const styles = StyleSheet.create({
   filter: {
     borderColor: 'black',
     borderWidth: 1,
+  },
+  discountToggle: {
+    paddingTop: 20,
+  },
+  discount: {
+    paddingTop: 10,
+    width: '70%',
+    alignItems: 'flex-end',
+  },
+  discountInput: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: '80%',
+    textAlign: 'center',
   },
   text: {
     textAlign: 'center',
