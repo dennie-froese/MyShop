@@ -5,17 +5,22 @@ import React, {
   useContext,
   useCallback,
 } from 'react';
-import {ProgressViewIOSComponent} from 'react-native';
 
 const defaultState = {
   total: 0,
+  discount: 0,
 };
 
 type State = {
   total: number;
+  discount: number;
 };
 
-type Action = {type: 'INC'; price: number} | {type: 'DEC'; price: number};
+type Action =
+  | {type: 'INC'; price: number}
+  | {type: 'DEC'; price: number}
+  | {type: 'DISCOUNT'; value: number};
+
 type Dispatch = (action: Action) => void;
 
 const TotalContext = createContext<State>(defaultState);
@@ -24,11 +29,13 @@ const TotalDispatchContext = createContext<Dispatch | undefined>(undefined);
 function totalReducer(state: State, action: Action) {
   switch (action.type) {
     case 'INC': {
-      // console.warn(state.total);
-      return {total: state.total + action.price};
+      return {...state, total: state.total + action.price};
     }
     case 'DEC': {
-      return {total: state.total - action.price};
+      return {...state, total: state.total - action.price};
+    }
+    case 'DISCOUNT': {
+      return {...state, discount: state.total * (action.value / 100)};
     }
     default: {
       throw new Error(`Unhandled action`);
