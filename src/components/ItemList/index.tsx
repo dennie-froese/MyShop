@@ -42,6 +42,15 @@ export default function App() {
     setProducts(tempProductsReduced);
   }
 
+  function discountChecker() {
+    if (discount === 'JULY20') {
+      discountApply();
+      setDiscountApplied(`Discount code ${discount} successfully applied!`);
+    } else {
+      setDiscountApplied(`Discount code ${discount} not valid!`);
+    }
+  }
+
   return (
     <>
       {!products ? (
