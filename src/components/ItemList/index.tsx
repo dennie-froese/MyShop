@@ -8,19 +8,19 @@ import {
 } from 'react-native';
 import Item, {Product} from 'components/Item';
 import {useTotal} from 'hooks/useTotalContext';
+import useFetch from 'hooks/useFetch';
 
 export default function App() {
   const [products, setProducts] = useState();
   const [open, setOpen] = useState(false);
   const total = useTotal();
+  const results = useFetch(
+    'https://my-json-server.typicode.com/benirvingplt/products/products',
+  );
 
   useEffect(() => {
-    fetch('https://my-json-server.typicode.com/benirvingplt/products/products')
-      .then((res) => res.json())
-      .then((result) => {
-        setProducts(result);
-      });
-  }, []);
+    setProducts(results);
+  }, [results]);
 
   const filter = () => {
     const filteredProducts: Product[] = products.filter((product: Product) => {
