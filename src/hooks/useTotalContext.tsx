@@ -80,3 +80,18 @@ export function useIncDec(price: number) {
 
   return {inc, dec};
 }
+
+export function useDiscountApply(value: number) {
+  const context = useContext(TotalDispatchContext);
+
+  if (context === undefined) {
+    throw new Error('useDiscount must be used within a TotalProvider');
+  }
+
+  const discountApply = useCallback(
+    () => context({type: 'DISCOUNT', value: value}),
+    [context],
+  );
+
+  return discountApply;
+}
