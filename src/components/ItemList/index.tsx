@@ -11,7 +11,7 @@ import Item, {Product} from 'components/Item';
 import {useTotal, useDiscountApply} from 'hooks/useTotalContext';
 import useFetch from 'hooks/useFetch';
 
-export default function App() {
+export default function ItemList() {
   const [products, setProducts] = useState();
   const [openFilter, setOpenFilter] = useState(false);
   const [openDiscount, setOpenDiscount] = useState(false);
